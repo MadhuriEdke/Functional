@@ -1,0 +1,50 @@
+import java.util.Random;
+import java.util.Scanner;
+
+
+
+public class Coupon {
+	
+	
+public static void main(String[] args) {
+	System.out.println("Enter the Coupon Length");
+    Scanner sc = new Scanner(System.in);
+	int len = sc.nextInt();
+	System.out.println("Enter the Number Of Coupon You Want");
+	int num = sc.nextInt();
+	//int [] result = getCoupon(len , num);
+	
+	
+}
+
+private static void getCoupon(int len ,int num) {
+	Random r = new Random();
+	/*The nextInt(n) method returns a random integer in the range 0 to n-1 inclusive. 
+	 * So the lowest possible value of num is 0 + 1000000 = 1000000, 
+	 * and the highest possible value is 90000000 - 1 + 10000000 = 99999999, as desired.
+	 */
+	int inner = (int) (9 * Math.pow(10, len-1));
+	int add = (int) (10 * Math.pow(10, len-2));
+	boolean[] isCollected = new boolean[num]; //// isCollected[i] = true if card type i already collected
+	int[] randomArray = new int [num]; ////Array for Result 
+	
+	int c=0;
+	int distinct =0;
+	
+	while(distinct < num) {
+		int newRandomNum = r.nextInt(inner)+add;
+		if( !isCollected[newRandomNum])
+			distinct ++;
+		    isCollected[newRandomNum]= true;
+		    randomArray[c]= newRandomNum;
+		    c++;
+	}
+	
+	for(int i=0;i< num;i++) {
+		System.out.println(i +"\t:: "+randomArray[i-1] );
+	}
+	
+	//int newRandomNum = r.nextInt(90000000)+10000000;
+	//return randomArray;
+}
+}
